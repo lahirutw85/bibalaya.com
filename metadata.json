@@ -1,0 +1,6 @@
+{
+  "name": "bibalaya.com",
+  "description": "A modern web application for Bible study, sermons, and resources, built with React, TypeScript, and Tailwind CSS.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
