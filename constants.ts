@@ -39,6 +39,7 @@ export const HERO_TEXT = "Discover Timeless Wisdom";
 export const FEATURE_CARDS_DATA: CardData[] = [
   { id: 'latest-video', title: 'Latest Video', imageUrl: 'https://picsum.photos/seed/video/600/400', description: 'Watch our most recent message and be inspired.' },
   { id: 'about-us', title: 'About Us', imageUrl: 'https://picsum.photos/seed/about/600/400', description: 'Learn more about our mission and community.' },
+  { id: 'downloads-feature', title: 'Downloads', imageUrl: 'https://picsum.photos/seed/downloads/600/400', description: 'Access study materials, guides, and other downloadable resources.' },
 ];
 
 const createDummyCarouselData = (seedPrefix: string, count: number, category: string): CardData[] => {

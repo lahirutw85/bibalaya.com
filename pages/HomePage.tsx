@@ -19,7 +19,7 @@ export const HomePage: React.FC = () => {
 
       <section 
         aria-labelledby="featured-content-heading" 
-        className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 px-4 md:px-8 max-w-[1000px] mx-auto w-full" // Changed max-w-[1200px] to max-w-[1000px]
+        className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 px-4 md:px-8 mx-auto w-full" // Removed max-w-[1200px]
       >
         <h2 id="featured-content-heading" className="sr-only">Featured Content</h2>
         {FEATURE_CARDS_DATA.map(item => (

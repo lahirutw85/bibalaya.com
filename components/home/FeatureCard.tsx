@@ -8,7 +8,7 @@ interface FeatureCardProps {
 
 export const FeatureCard: React.FC<FeatureCardProps> = ({ item }) => {
   return (
-    <div className="bg-card-bg rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col">
+    <div className="w-full bg-card-bg rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col">
       <img 
         src={item.imageUrl} 
         alt={item.title} 
