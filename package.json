@@ -9,12 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@clerk/react-router": "^1.4.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
+    "@types/react": "^19.1.5",
+    "@types/react-dom": "^19.1.5",
     "typescript": "~5.7.2",
     "vite": "^6.2.0"
   }

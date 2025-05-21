@@ -1,5 +1,3 @@
-
-
 // Fix: Import SeriesFilterOption from types.ts
 import { NavItem, CardData, SocialLink, Language, SeriesCategoryData, SeriesFilterOption } from './types';
 import { HomeIcon, BibleIcon, StudyPlansIcon, SeriesIcon, BibleStudyIcon, SermonsIcon, BooksIcon, DownloadsIcon, AskLahiruIcon, SearchIconNav, UserCircleIcon, YouTubeIcon, LinkedInIcon } from './components/icons';
@@ -85,7 +83,7 @@ const UPCOMING_SERIES_ITEMS: CardData[] = [
   { id: 'ezek', title: 'EZEKIEL', category: 'FOR BEGINNERS', description: 'ENCOUNTERING GOD\'S GLORY IN TIMES OF EXILE', imageUrl: 'https://picsum.photos/seed/ezekseries/280/180', overlayColor: 'bg-yellow-600/70' },
 ];
 
-const NT_SERIES_ITEMS:  CardData[] = [
+const NT_SERIES_ITEMS: CardData[] = [
   { id: 'matthew', title: 'MATTHEW', category: 'FOR BEGINNERS', imageUrl: 'https://picsum.photos/seed/matthewseries/280/180', overlayColor: 'bg-green-700/70', description: 'JESUS THE PROMISED KING' },
   { id: 'mark', title: 'MARK', category: 'FOR BEGINNERS', imageUrl: 'https://picsum.photos/seed/markseries/280/180', overlayColor: 'bg-teal-600/70', description: 'JESUS IN ACTION' },
   { id: 'luke', title: 'LUKE', category: 'FOR BEGINNERS', imageUrl: 'https://picsum.photos/seed/lukeseries/280/180', overlayColor: 'bg-amber-700/70', description: 'JESUS THE SAVIOR OF ALL' },
@@ -135,11 +133,11 @@ const OT_SERIES_ITEMS: CardData[] = [
 
 // This constant remains but will be unused by SERIES_CATEGORIES_DATA
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const BEGINNERS_SERIES_ITEMS: CardData[] = [
-  { id: 'galatians', title: 'GALATIANS', category: 'FOR BEGINNERS', imageUrl: 'https://picsum.photos/seed/galbeginners/280/180', overlayColor: 'bg-orange-600/70' },
-  { id: 'james', title: 'JAMES', category: 'FOR BEGINNERS', imageUrl: 'https://picsum.photos/seed/jamesbeginners/280/180', overlayColor: 'bg-blue-600/70' },
-  { id: 'leviticus', title: 'LEVITICUS', category: 'FOR BEGINNERS', description: 'TRAINING FOR HOLINESS', imageUrl: 'https://picsum.photos/seed/levbeginners/280/180', overlayColor: 'bg-amber-600/70' },
-];
+// const BEGINNERS_SERIES_ITEMS: CardData[] = [
+//   { id: 'galatians', title: 'GALATIANS', category: 'FOR BEGINNERS', imageUrl: 'https://picsum.photos/seed/galbeginners/280/180', overlayColor: 'bg-orange-600/70' },
+//   { id: 'james', title: 'JAMES', category: 'FOR BEGINNERS', imageUrl: 'https://picsum.photos/seed/jamesbeginners/280/180', overlayColor: 'bg-blue-600/70' },
+//   { id: 'leviticus', title: 'LEVITICUS', category: 'FOR BEGINNERS', description: 'TRAINING FOR HOLINESS', imageUrl: 'https://picsum.photos/seed/levbeginners/280/180', overlayColor: 'bg-amber-600/70' },
+// ];
 
 
 export const SERIES_CATEGORIES_DATA: SeriesCategoryData[] = [
@@ -167,44 +165,44 @@ export interface StudyPlanLevelData {
 }
 
 export const STUDY_PLANS_DATA: StudyPlanLevelData[] = [
-  { 
-    id: 'level1', 
-    level: 'Level 1', 
-    title: 'BASIC', 
-    seriesCount: '8 SERIES', 
-    bgColor: 'bg-emerald-700 hover:bg-emerald-600', 
-    buttonLink: '/study-plans/basic' 
+  {
+    id: 'level1',
+    level: 'Level 1',
+    title: 'BASIC',
+    seriesCount: '8 SERIES',
+    bgColor: 'bg-emerald-700 hover:bg-emerald-600',
+    buttonLink: '/study-plans/basic'
   },
-  { 
-    id: 'level2', 
-    level: 'Level 2', 
-    title: 'INTERMEDIATE', 
-    seriesCount: '11 SERIES', 
-    bgColor: 'bg-lime-600 hover:bg-lime-500', 
-    buttonLink: '/study-plans/intermediate' 
+  {
+    id: 'level2',
+    level: 'Level 2',
+    title: 'INTERMEDIATE',
+    seriesCount: '11 SERIES',
+    bgColor: 'bg-lime-600 hover:bg-lime-500',
+    buttonLink: '/study-plans/intermediate'
   },
-  { 
-    id: 'level3', 
-    level: 'Level 3', 
-    title: 'ADVANCED', 
-    seriesCount: '15 SERIES', 
-    bgColor: 'bg-amber-600 hover:bg-amber-500', 
-    buttonLink: '/study-plans/advanced' 
+  {
+    id: 'level3',
+    level: 'Level 3',
+    title: 'ADVANCED',
+    seriesCount: '15 SERIES',
+    bgColor: 'bg-amber-600 hover:bg-amber-500',
+    buttonLink: '/study-plans/advanced'
   },
-  { 
-    id: 'level4', 
-    level: 'Level 4', 
-    title: 'INSTRUCTOR I', 
-    seriesCount: '15 SERIES', 
-    bgColor: 'bg-orange-700 hover:bg-orange-600', 
-    buttonLink: '/study-plans/instructor-1' 
+  {
+    id: 'level4',
+    level: 'Level 4',
+    title: 'INSTRUCTOR I',
+    seriesCount: '15 SERIES',
+    bgColor: 'bg-orange-700 hover:bg-orange-600',
+    buttonLink: '/study-plans/instructor-1'
   },
-  { 
-    id: 'level5', 
-    level: 'Level 5', 
-    title: 'INSTRUCTOR II', 
-    seriesCount: '17 SERIES', 
-    bgColor: 'bg-red-700 hover:bg-red-600', 
-    buttonLink: '/study-plans/instructor-2' 
+  {
+    id: 'level5',
+    level: 'Level 5',
+    title: 'INSTRUCTOR II',
+    seriesCount: '17 SERIES',
+    bgColor: 'bg-red-700 hover:bg-red-600',
+    buttonLink: '/study-plans/instructor-2'
   },
 ];
