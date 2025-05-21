@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CardData } from '../../types';
@@ -12,9 +13,9 @@ interface SeriesCarouselProps {
   titleClassName?: string;
 }
 
-const DRAG_SENSITIVITY =1.5; // Updated from 1.5 to 5
-const INERTIA_DAMPING_FACTOR = 100; // Adjust for more or less friction (0.9 to 0.98 is common)
-const MIN_VELOCITY_FOR_INERTIA = 0.5; // Minimum velocity to trigger inertia scrolling
+const DRAG_SENSITIVITY =1.5; 
+const INERTIA_DAMPING_FACTOR = 0.95; // Corrected damping factor
+const MIN_VELOCITY_FOR_INERTIA = 0.5; 
 
 export const SeriesCarousel: React.FC<SeriesCarouselProps> = ({ 
   title, 
@@ -28,13 +29,12 @@ export const SeriesCarousel: React.FC<SeriesCarouselProps> = ({
   const startXRef = useRef(0);
   const scrollLeftStartRef = useRef(0);
   
-  // Refs for inertia scrolling
   const lastDragXRef = useRef(0);
   const velocityXRef = useRef(0);
   const animationFrameIdRef = useRef<number | null>(null);
 
   const scroll = (direction: 'left' | 'right') => {
-    if (animationFrameIdRef.current) { // Stop any ongoing inertia animation
+    if (animationFrameIdRef.current) { 
       cancelAnimationFrame(animationFrameIdRef.current);
       animationFrameIdRef.current = null;
       velocityXRef.current = 0;
@@ -55,10 +55,10 @@ export const SeriesCarousel: React.FC<SeriesCarouselProps> = ({
     isDraggingRef.current = true;
     startXRef.current = e.pageX;
     scrollLeftStartRef.current = scrollContainerRef.current.scrollLeft;
-    lastDragXRef.current = e.pageX; // Initialize for velocity calculation
-    velocityXRef.current = 0; // Reset velocity
+    lastDragXRef.current = e.pageX; 
+    velocityXRef.current = 0; 
 
-    if (animationFrameIdRef.current) { // Cancel any ongoing inertia animation
+    if (animationFrameIdRef.current) { 
       cancelAnimationFrame(animationFrameIdRef.current);
       animationFrameIdRef.current = null;
     }
@@ -76,7 +76,6 @@ export const SeriesCarousel: React.FC<SeriesCarouselProps> = ({
     const walk = (currentX - startXRef.current) * DRAG_SENSITIVITY;
     scrollContainerRef.current.scrollLeft = scrollLeftStartRef.current - walk;
 
-    // Calculate velocity for inertia
     velocityXRef.current = (currentX - lastDragXRef.current) * DRAG_SENSITIVITY;
     lastDragXRef.current = currentX;
   };
@@ -90,7 +89,7 @@ export const SeriesCarousel: React.FC<SeriesCarouselProps> = ({
     }
 
     scrollContainerRef.current.scrollLeft -= velocityXRef.current;
-    velocityXRef.current *= INERTIA_DAMPING_FACTOR; // Apply damping
+    velocityXRef.current *= INERTIA_DAMPING_FACTOR; 
 
     animationFrameIdRef.current = requestAnimationFrame(animateInertiaScroll);
   };
@@ -106,17 +105,16 @@ export const SeriesCarousel: React.FC<SeriesCarouselProps> = ({
     document.removeEventListener('mousemove', handleDocumentMouseMove);
     document.removeEventListener('mouseup', handleDocumentMouseUp);
 
-    // Start inertia scrolling if velocity is significant
     if (Math.abs(velocityXRef.current) > MIN_VELOCITY_FOR_INERTIA && scrollContainerRef.current) {
       animationFrameIdRef.current = requestAnimationFrame(animateInertiaScroll);
     } else {
-      velocityXRef.current = 0; // Ensure velocity is zeroed if no inertia
+      velocityXRef.current = 0; 
     }
   };
 
   useEffect(() => {
-    return () => { // Cleanup function
-      if (isDraggingRef.current) { // Should not happen if mouseup is always caught, but good practice
+    return () => { 
+      if (isDraggingRef.current) { 
         document.removeEventListener('mousemove', handleDocumentMouseMove);
         document.removeEventListener('mouseup', handleDocumentMouseUp);
       }
@@ -175,7 +173,7 @@ export const SeriesCarousel: React.FC<SeriesCarouselProps> = ({
       <div
         ref={scrollContainerRef}
         className="flex overflow-x-auto space-x-4 md:space-x-6 pb-4 scrollbar-hide cursor-grab select-none"
-        style={{ scrollSnapType: 'x mandatory' }} // Keep scroll snap for final position
+        style={{ scrollSnapType: 'x mandatory' }} 
         onMouseDown={handleMouseDown}
         role="region"
         aria-label={`${title} carousel`}

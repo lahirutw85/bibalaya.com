@@ -1,21 +1,21 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Footer } from '../../components/layout/Footer'; // Corrected path
-import { StudyPlansIcon } from '../../components/icons'; // Corrected path
-import { STUDY_PLANS_DATA } from '../constants'; // This correctly points to src/constants.ts
+import { Footer } from '../../components/layout/Footer'; 
+import { StudyPlansIcon } from '../../components/icons'; 
+import { STUDY_PLANS_DATA } from '../../constants'; // Updated path
 
 export const StudyPlansPage: React.FC = () => {
   return (
     <div className="bg-dark-bg text-text-light flex flex-col min-h-full">
       <div className="flex-grow px-4 py-8 md:px-8 md:py-12">
         <div className="max-w-3xl mx-auto">
-          <header className="mb-10 md:mb-16 text-center"> {/* Changed from text-left to text-center */}
-            <StudyPlansIcon className="w-14 h-14 md:w-16 md:h-16 mb-5 text-gray-200 mx-auto" /> {/* Added mx-auto for explicit centering */}
+          <header className="mb-10 md:mb-16 text-center"> 
+            <StudyPlansIcon className="w-14 h-14 md:w-16 md:h-16 mb-5 text-gray-200 mx-auto" /> 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
               STUDY PLANS
             </h1>
-            <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-2xl mx-auto"> {/* Added mx-auto */}
+            <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-2xl mx-auto"> 
               A variety of courses divided into five structured study plans each leading to a Certificate of Completion.
             </p>
           </header>
@@ -40,7 +40,7 @@ export const StudyPlansPage: React.FC = () => {
                   <div className="flex-shrink-0 mt-4 sm:mt-0 self-start sm:self-center">
                     <Link 
                       to={plan.buttonLink} 
-                      onClick={(e) => { e.preventDefault(); alert(`Navigating to ${plan.title} plan... (Route: ${plan.buttonLink})`);}} // Placeholder action
+                      onClick={(e) => { e.preventDefault(); alert(`Navigating to ${plan.title} plan... (Route: ${plan.buttonLink})`);}} 
                       className="inline-block bg-white text-dark-bg font-semibold px-6 py-3 rounded-lg shadow hover:bg-gray-100 active:bg-gray-200 transition-colors duration-200 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark-bg focus:ring-white"
                       aria-label={`View plan for ${plan.title}`}
                     >

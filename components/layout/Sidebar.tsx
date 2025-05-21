@@ -1,9 +1,17 @@
 
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { NavItem, Language, SocialLink } from '../../types';
-import { APP_LOGO_URL, SIDEBAR_TOP_ITEMS, SIDEBAR_BOTTOM_ITEMS, SOCIAL_LINKS, LANGUAGES } from '../../constants';
-import { ChevronDownIcon } from '../icons/ChevronDownIcon';
+import { NavItem, Language } from '../../types'; 
+import { 
+  APP_LOGO_URL, 
+  SIDEBAR_TOP_ITEMS, 
+  SIDEBAR_BOTTOM_ITEMS, 
+  LANGUAGES,
+  YOUTUBE_CHANNEL_URL,
+  YOUTUBE_SUBSCRIBER_COUNT
+} from '../../constants';
+import { YouTubeIcon } from '../icons'; 
 
 interface SidebarProps {
   isOpen: boolean;
@@ -33,114 +41,101 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
         tabIndex={item.disabled ? -1 : 0}
       >
         <item.icon className="h-5 w-5 flex-shrink-0" />
-        <span className="text-sm uppercase">{item.label}</span> {/* Added uppercase class */}
+        <span className="text-sm uppercase">{item.label}</span>
       </Link>
     );
   };
 
-  return (
-    <>
-      {/* Sidebar for larger screens */}
-      <aside className="hidden md:flex md:flex-col w-64 bg-dark-bg text-text-light space-y-4 p-4 shadow-lg fixed h-full z-50">
-        <div className="flex items-center justify-center py-2 border-b border-gray-700">
-          <img src={APP_LOGO_URL} alt="App Logo" className="h-10 object-contain" />
+  const renderBottomSection = () => (
+    <div className="border-t border-gray-700 pt-4 space-y-3">
+      {/* "Your Account" Link Placeholder */}
+      {SIDEBAR_BOTTOM_ITEMS.map(item => (
+        <div key={item.id} className="flex justify-center">
+          <NavLinkItem item={item} />
         </div>
+      ))}
 
-        <div className="flex items-center justify-start py-2 border-b border-gray-700 px-2">
-          <span className="text-sm text-gray-400 mr-2">Language:</span>
-          {LANGUAGES.map((lang) => (
+      {/* YouTube Subscriber Section */}
+      <div className="space-y-1.5 text-gray-300 px-3 text-center"> 
+        <div className="flex items-center justify-center space-x-2">
+          <YouTubeIcon className="h-5 w-5 text-red-600"/>
+          <span className="text-xs font-medium">Subscribers: {YOUTUBE_SUBSCRIBER_COUNT}</span>
+        </div>
+        <a 
+          href={YOUTUBE_CHANNEL_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block w-full max-w-xs mx-auto mt-1.5 px-3 py-2 bg-red-600 text-white text-xs font-semibold rounded-md hover:bg-red-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-75"
+        >
+          Subscribe on YouTube
+        </a>
+      </div>
+    </div>
+  );
+
+
+  const sidebarContent = (
+    <div className="h-full flex flex-col bg-dark-bg text-text-light shadow-2xl">
+      {/* Logo */}
+      <div className="p-4 border-b border-gray-700">
+        <Link to="/" className="block" onClick={handleNavItemClick}>
+          <img
+            src={APP_LOGO_URL}
+            alt="App Logo"
+            className="w-full h-auto max-h-16 object-contain" 
+          />
+        </Link>
+      </div>
+
+      {/* Language Selector - Buttons */}
+      <div className="px-3 py-3 border-b border-gray-700">
+        <div className="flex items-center space-x-2">
+          <span className="text-lg text-gray-400 mr-1 uppercase">Language:</span>
+          {LANGUAGES.map(lang => (
             <button
               key={lang.id}
               onClick={() => setCurrentLanguage(lang.id)}
-              className={`px-3 py-1 text-xs rounded-md transition-colors duration-200 ml-1
-                          ${currentLanguage === lang.id ? 'bg-primary text-white font-semibold' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
+              className={`px-3 py-1 text-xl uppercase font-medium rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-opacity-75
+                          ${currentLanguage === lang.id 
+                            ? 'bg-primary text-white focus:ring-primary-dark' 
+                            : 'bg-gray-700 text-gray-300 hover:bg-gray-600 focus:ring-gray-500'
+                          }`}
             >
               {lang.label}
             </button>
           ))}
         </div>
+      </div>
 
-        <nav className="flex-grow space-y-1.5 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800">
-          {SIDEBAR_TOP_ITEMS.map((item) => (
-            <NavLinkItem key={item.id} item={item} />
-          ))}
-        </nav>
+      {/* Navigation Links */}
+      <nav className="flex-grow p-3 space-y-1.5 overflow-y-auto scrollbar-hide">
+        {SIDEBAR_TOP_ITEMS.map(item => (
+          <NavLinkItem key={item.id} item={item} />
+        ))}
+      </nav>
+      
+      {/* Bottom Section (Account, Socials) */}
+      <div className="p-3">
+        {renderBottomSection()}
+      </div>
+    </div>
+  );
 
-        <div className="border-t border-gray-700 pt-4 space-y-2">
-          {SIDEBAR_BOTTOM_ITEMS.map((item) => (
-            <NavLinkItem key={item.id} item={item} />
-          ))}
-          <div className="flex justify-center space-x-4 pt-2">
-            {SOCIAL_LINKS.map((link: SocialLink) => (
-              <a
-                key={link.id}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-primary transition-colors duration-200"
-                aria-label={link.label}
-              >
-                <link.icon className="h-6 w-6" />
-              </a>
-            ))}
-          </div>
-        </div>
+  return (
+    <>
+      {/* Desktop Sidebar */}
+      <aside className="hidden md:block w-64 h-screen sticky top-0">
+        {sidebarContent}
       </aside>
-      {/* Spacer for fixed sidebar on desktop */}
-      <div className="hidden md:block w-64 flex-shrink-0"></div>
-
 
       {/* Mobile Sidebar (Drawer) */}
-      <div className={`fixed inset-0 z-50 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} 
-                      transition-transform duration-300 ease-in-out md:hidden`}>
-        <aside className="flex flex-col w-64 bg-dark-bg text-text-light space-y-4 p-4 shadow-lg h-full">
-          <div className="flex items-center justify-between py-2 border-b border-gray-700">
-            <img src={APP_LOGO_URL} alt="App Logo" className="h-10 object-contain" />
-            <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white p-1">
-               <ChevronDownIcon className="h-6 w-6 transform rotate-90" /> {/* Using Chevron as close */}
-            </button>
-          </div>
-
-          <div className="flex items-center justify-start py-2 border-b border-gray-700 px-2">
-            <span className="text-sm text-gray-400 mr-2">Language:</span>
-            {LANGUAGES.map((lang) => (
-              <button
-                key={lang.id}
-                onClick={() => { setCurrentLanguage(lang.id); /* setIsOpen(false); */ }}
-                className={`px-3 py-1 text-xs rounded-md transition-colors duration-200 ml-1
-                            ${currentLanguage === lang.id ? 'bg-primary text-white font-semibold' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-              >
-                {lang.label}
-              </button>
-            ))}
-          </div>
-
-          <nav className="flex-grow space-y-1.5 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800">
-            {SIDEBAR_TOP_ITEMS.map((item) => (
-              <NavLinkItem key={item.id} item={item} />
-            ))}
-          </nav>
-
-          <div className="border-t border-gray-700 pt-4 space-y-2">
-            {SIDEBAR_BOTTOM_ITEMS.map((item) => (
-              <NavLinkItem key={item.id} item={item} />
-            ))}
-            <div className="flex justify-center space-x-4 pt-2">
-              {SOCIAL_LINKS.map((link: SocialLink) => (
-                <a
-                  key={link.id}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-primary transition-colors duration-200"
-                  aria-label={link.label}
-                >
-                  <link.icon className="h-6 w-6" />
-                </a>
-              ))}
-            </div>
-          </div>
-        </aside>
+      <div 
+        className={`fixed inset-y-0 left-0 z-50 w-64 transform transition-transform duration-300 ease-in-out md:hidden ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="mobile-sidebar-title"
+      >
+        {sidebarContent}
       </div>
     </>
   );

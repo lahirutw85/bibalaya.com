@@ -71,7 +71,7 @@ export const ContentCarousel: React.FC<ContentCarouselProps> = ({ title, items, 
         style={{ scrollSnapType: 'x mandatory' }}
       >
         {items.map((item) => (
-          <div key={item.id} className="flex-shrink-0 w-64 md:w-72" style={{ scrollSnapAlign: 'start' }}>
+          <div key={item.id} className="flex-shrink-0 w-64 md:w-[25rem]" style={{ scrollSnapAlign: 'start' }}>
             <CarouselCard item={item} />
           </div>
         ))}
