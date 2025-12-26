@@ -1,13 +1,14 @@
+
 // Fix: Import SeriesFilterOption from types.ts
 import { NavItem, CardData, SocialLink, Language, SeriesCategoryData, SeriesFilterOption } from './types';
-import { HomeIcon, BibleIcon, StudyPlansIcon, SeriesIcon, BibleStudyIcon, SermonsIcon, BooksIcon, DownloadsIcon, AskLahiruIcon, SearchIconNav, UserCircleIcon } from './components/icons'; 
+import { HomeIcon, BibleIcon, StudyPlansIcon, SeriesIcon, BibleStudyIcon, SermonsIcon, BooksIcon, DownloadsIcon, AskLahiruIcon, SearchIconNav, UserCircleIcon } from './components/icons';
 
 export const APP_LOGO_URL = "https://ik.imagekit.io/bibalaya/SVG/Bibalaya.com%20-%20LOGO.svg?updatedAt=1747814898195"; // Updated logo URL
 
 export const SIDEBAR_TOP_ITEMS: NavItem[] = [
   { id: 'home', label: 'Home', icon: HomeIcon, path: '/' },
-  { id: 'entire-bible', label: 'Entire Bible', icon: BibleIcon, path: '/bible', disabled: true },
-  { id: 'study-plans', label: 'Study Plans', icon: StudyPlansIcon, path: '/study-plans', disabled: false }, 
+  { id: 'entire-bible', label: 'Entire Bible', icon: BibleIcon, path: '/entire-bible', disabled: false },
+  { id: 'study-plans', label: 'Study Plans', icon: StudyPlansIcon, path: '/study-plans', disabled: false },
   { id: 'series', label: 'Series', icon: SeriesIcon, path: '/series', disabled: false },
   { id: 'bible-study', label: 'Bible Studies', icon: BibleStudyIcon, path: '/bible-studies', disabled: true },
   { id: 'sermons', label: 'Sermons', icon: SermonsIcon, path: '/sermons', disabled: true },
@@ -18,11 +19,11 @@ export const SIDEBAR_TOP_ITEMS: NavItem[] = [
 ];
 
 export const SIDEBAR_BOTTOM_ITEMS: NavItem[] = [
-  { id: 'account', label: 'Your Account', icon: UserCircleIcon, path: '/account', disabled: true },
+  { id: 'account', label: 'Your Account', icon: UserCircleIcon, path: '/account', disabled: false },
 ];
 
-export const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@lahiruthikshana"; 
-export const YOUTUBE_SUBSCRIBER_COUNT = "1.23M"; 
+export const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@lahiruthikshana";
+export const YOUTUBE_SUBSCRIBER_COUNT = "1.23M";
 
 export const SOCIAL_LINKS: SocialLink[] = [
   // LinkedIn and YouTube social links removed as per user request
@@ -61,7 +62,7 @@ export const SERIES_PAGE_HERO_TITLE = "FREE BIBLE CLASSES AND SERIES";
 export const SERIES_PAGE_HERO_DESCRIPTION = "Multi-lesson Bible courses for personal, small group or church Bible studies. Many contain a complete quarter of material with lesson notes for the students.";
 
 export const SERIES_FILTER_OPTIONS: SeriesFilterOption[] = [
-  { id: 'featured', label: 'FEATURED', active: true }, 
+  { id: 'featured', label: 'FEATURED', active: true },
   { id: 'newest', label: 'NEWEST FIRST' },
   { id: 'alpha', label: 'ALPHABETICALLY' },
 ];
@@ -81,7 +82,7 @@ const UPCOMING_SERIES_ITEMS: CardData[] = [
   { id: 'ezek', title: 'EZEKIEL', category: 'FOR BEGINNERS', description: 'ENCOUNTERING GOD\'S GLORY IN TIMES OF EXILE', imageUrl: 'https://picsum.photos/seed/ezekseries/280/180', overlayColor: 'bg-yellow-600/70' },
 ];
 
-const NT_SERIES_ITEMS:  CardData[] = [
+const NT_SERIES_ITEMS: CardData[] = [
   { id: 'matthew', title: 'MATTHEW', category: 'FOR BEGINNERS', imageUrl: 'https://picsum.photos/seed/matthewseries/280/180', overlayColor: 'bg-green-700/70', description: 'JESUS THE PROMISED KING' },
   { id: 'mark', title: 'MARK', category: 'FOR BEGINNERS', imageUrl: 'https://picsum.photos/seed/markseries/280/180', overlayColor: 'bg-teal-600/70', description: 'JESUS IN ACTION' },
   { id: 'luke', title: 'LUKE', category: 'FOR BEGINNERS', imageUrl: 'https://picsum.photos/seed/lukeseries/280/180', overlayColor: 'bg-amber-700/70', description: 'JESUS THE SAVIOR OF ALL' },
@@ -151,44 +152,71 @@ export interface StudyPlanLevelData {
 }
 
 export const STUDY_PLANS_DATA: StudyPlanLevelData[] = [
-  { 
-    id: 'level1', 
-    level: 'Level 1', 
-    title: 'BASIC', 
-    seriesCount: '8 SERIES', 
-    bgColor: 'bg-emerald-700 hover:bg-emerald-600', 
-    buttonLink: '/study-plans/basic' 
+  {
+    id: 'level1',
+    level: 'Level 1',
+    title: 'BASIC',
+    seriesCount: '8 SERIES',
+    bgColor: 'bg-emerald-700 hover:bg-emerald-600',
+    buttonLink: '/study-plans/basic'
   },
-  { 
-    id: 'level2', 
-    level: 'Level 2', 
-    title: 'INTERMEDIATE', 
-    seriesCount: '11 SERIES', 
-    bgColor: 'bg-lime-600 hover:bg-lime-500', 
-    buttonLink: '/study-plans/intermediate' 
+  {
+    id: 'level2',
+    level: 'Level 2',
+    title: 'INTERMEDIATE',
+    seriesCount: '11 SERIES',
+    bgColor: 'bg-lime-600 hover:bg-lime-500',
+    buttonLink: '/study-plans/intermediate'
   },
-  { 
-    id: 'level3', 
-    level: 'Level 3', 
-    title: 'ADVANCED', 
-    seriesCount: '15 SERIES', 
-    bgColor: 'bg-amber-600 hover:bg-amber-500', 
-    buttonLink: '/study-plans/advanced' 
+  {
+    id: 'level3',
+    level: 'Level 3',
+    title: 'ADVANCED',
+    seriesCount: '15 SERIES',
+    bgColor: 'bg-amber-600 hover:bg-amber-500',
+    buttonLink: '/study-plans/advanced'
   },
-  { 
-    id: 'level4', 
-    level: 'Level 4', 
-    title: 'INSTRUCTOR I', 
-    seriesCount: '15 SERIES', 
-    bgColor: 'bg-orange-700 hover:bg-orange-600', 
-    buttonLink: '/study-plans/instructor-1' 
+  {
+    id: 'level4',
+    level: 'Level 4',
+    title: 'INSTRUCTOR I',
+    seriesCount: '15 SERIES',
+    bgColor: 'bg-orange-700 hover:bg-orange-600',
+    buttonLink: '/study-plans/instructor-1'
   },
-  { 
-    id: 'level5', 
-    level: 'Level 5', 
-    title: 'INSTRUCTOR II', 
-    seriesCount: '17 SERIES', 
-    bgColor: 'bg-red-700 hover:bg-red-600', 
-    buttonLink: '/study-plans/instructor-2' 
+  {
+    id: 'level5',
+    level: 'Level 5',
+    title: 'INSTRUCTOR II',
+    seriesCount: '17 SERIES',
+    bgColor: 'bg-red-700 hover:bg-red-600',
+    buttonLink: '/study-plans/instructor-2'
   },
+];
+
+export const COUNTRIES = [
+  "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
+  "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi",
+  "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic",
+  "Denmark", "Djibouti", "Dominica", "Dominican Republic",
+  "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia",
+  "Fiji", "Finland", "France",
+  "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana",
+  "Haiti", "Honduras", "Hungary",
+  "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Ivory Coast",
+  "Jamaica", "Japan", "Jordan",
+  "Kazakhstan", "Kenya", "Kiribati", "Korea, North", "Korea, South", "Kosovo", "Kuwait", "Kyrgyzstan",
+  "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg",
+  "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar",
+  "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway",
+  "Oman",
+  "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal",
+  "Qatar",
+  "Romania", "Russia", "Rwanda",
+  "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria",
+  "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu",
+  "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan",
+  "Vanuatu", "Vatican City", "Venezuela", "Vietnam",
+  "Yemen",
+  "Zambia", "Zimbabwe"
 ];

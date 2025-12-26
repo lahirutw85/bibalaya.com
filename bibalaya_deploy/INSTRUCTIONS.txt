@@ -1,0 +1,18 @@
+DEPLOYMENT INSTRUCTIONS FOR HOSTINGER
+
+1. Frontend (The Website):
+   - Open the 'public_html' folder in this zip.
+   - Upload all files inside it to your Hostinger File Manager inside the 'public_html' directory.
+   - This will make your main website visible.
+
+2. Backend (The CMS & Database):
+   - The 'cms_backend' folder contains your API and Database logic.
+   - IMPORTANT: This requires a Hostinger plan that supports Node.js/VPS.
+   - If using Shared Hosting with Node.js support:
+     1. Upload 'cms_backend' to a folder outside public_html (e.g. /home/user/cms).
+     2. In Hostinger Node.js selector, point to this folder and install dependencies (npm install).
+     3. You will need to configure an '.htaccess' or Nginx rule to route '/api' requests to this backend.
+
+3. Database:
+   - Your data is currently in a local SQLite file inside 'cms_backend'.
+   - It is included in the upload.

@@ -1,0 +1,38 @@
+
+:root {
+  --theme-bg: #1a1a1a;
+  --theme-text: #ffffff;
+  --theme-elevation-0: #121212;
+  --theme-elevation-50: #1a1a1a;
+  --theme-elevation-100: #242424;
+  --theme-elevation-150: #2a2a2a;
+  --theme-elevation-200: #333333;
+  --theme-elevation-300: #3a3a3a;
+  --theme-elevation-400: #444444;
+  --theme-elevation-450: #4a4a4a;
+  --theme-elevation-500: #555555;
+  --theme-elevation-600: #666666;
+  --theme-elevation-700: #777777;
+  --theme-elevation-800: #888888;
+  --theme-elevation-850: #999999;
+  --theme-elevation-900: #aaaaaa;
+  --theme-elevation-950: #bbbbbb;
+  --theme-elevation-1000: #ffffff;
+}
+
+/* Custom styles for a more premium look */
+.nav-group__label {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--theme-elevation-600);
+}
+
+.sidebar .nav {
+    padding-top: 20px;
+}
+
+.collection-edit__header-wrap h1 {
+    font-weight: 700;
+}
