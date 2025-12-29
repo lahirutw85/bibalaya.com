@@ -1,4 +1,4 @@
-// File: C:\Users\lahir\Music\bibalaya.com\bibalaya.com\cms\src\app\(payload)\admin\[[...segments]]\page.tsx
+// File: C:\SOFTWARE DEV\bibalaya.com\bibalaya.com\cms\src\app\(payload)\admin\[[...segments]]\page.tsx
 import * as entry from '../../../../../../src/app/(payload)/admin/[[...segments]]/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

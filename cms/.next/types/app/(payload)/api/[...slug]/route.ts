@@ -1,4 +1,4 @@
-// File: C:\Users\lahir\Music\bibalaya.com\bibalaya.com\cms\src\app\(payload)\api\[...slug]\route.ts
+// File: C:\SOFTWARE DEV\bibalaya.com\bibalaya.com\cms\src\app\(payload)\api\[...slug]\route.ts
 import * as entry from '../../../../../../src/app/(payload)/api/[...slug]/route.js'
 import type { NextRequest } from 'next/server.js'
 
