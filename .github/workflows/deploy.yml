@@ -1,0 +1,62 @@
+name: Build and Package for Deployment
+
+on:
+  push:
+    branches: [ update-2 ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Root & Frontend Dependencies
+        run: npm install
+
+      - name: Build Frontend (Vite)
+        run: npm run build
+
+      - name: Install CMS Dependencies
+        run: |
+          cd cms
+          npm install
+
+      - name: Build CMS (Next.js/Payload)
+        run: |
+          cd cms
+          npm run build
+
+      - name: Prepare Deployment Package
+        run: |
+          mkdir -p deploy/public_html
+          mkdir -p deploy/cms_backend
+          
+          # 1. Copy Frontend Build
+          cp -r dist/* deploy/public_html/
+          
+          # 2. Copy CMS Build
+          # We need: package.json, next.config.mjs, .next folder, and public folder
+          cp cms/package.json deploy/cms_backend/
+          cp cms/next.config.mjs deploy/cms_backend/
+          cp -r cms/.next deploy/cms_backend/
+          cp -r cms/public deploy/cms_backend/ || true
+          
+          # 3. Add Instructions and Server Helpers
+          cp _server.cjs deploy/
+          if [ -d "bibalaya_deploy" ]; then
+            cp bibalaya_deploy/INSTRUCTIONS.txt deploy/
+          fi
+
+      - name: Upload Deployment Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bibalaya-fullstack-bundle
+          path: deploy/

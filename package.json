@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "concurrently \"vite\" \"cd cms && npm run dev\"",
     "build": "vite build",
+    "build:cms": "cd cms && npm run build",
+    "build:all": "npm run build && npm run build:cms",
     "preview": "vite preview"
   },
   "dependencies": {
