@@ -1,9 +1,17 @@
+
 import { CollectionConfig } from 'payload'
+import { SeriesStats } from '../components/SeriesStats'
 
 export const Series: CollectionConfig = {
     slug: 'series',
     admin: {
         useAsTitle: 'title',
+        components: {
+            beforeList: [SeriesStats],
+        },
+    },
+    versions: {
+        drafts: true,
     },
     fields: [
         {
@@ -68,3 +76,4 @@ export const Series: CollectionConfig = {
         },
     ],
 }
+

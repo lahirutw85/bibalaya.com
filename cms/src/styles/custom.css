@@ -1,38 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --theme-bg: #1a1a1a;
-  --theme-text: #ffffff;
-  --theme-elevation-0: #121212;
-  --theme-elevation-50: #1a1a1a;
-  --theme-elevation-100: #242424;
-  --theme-elevation-150: #2a2a2a;
-  --theme-elevation-200: #333333;
-  --theme-elevation-300: #3a3a3a;
-  --theme-elevation-400: #444444;
-  --theme-elevation-450: #4a4a4a;
-  --theme-elevation-500: #555555;
-  --theme-elevation-600: #666666;
-  --theme-elevation-700: #777777;
-  --theme-elevation-800: #888888;
-  --theme-elevation-850: #999999;
-  --theme-elevation-900: #aaaaaa;
-  --theme-elevation-950: #bbbbbb;
-  --theme-elevation-1000: #ffffff;
+    /* --- 1) Design Tokens (Fluido Theme) --- */
+
+    /* Backgrounds */
+    --bg-0: #050314;
+    /* page background */
+    --bg-1: #0B0A1E;
+    /* elevated background */
+    --surface: rgba(255, 255, 255, .04);
+    /* glass card */
+    --surface-2: rgba(255, 255, 255, .06);
+    /* glass hover */
+
+    /* Borders + shadows */
+    --border: rgba(255, 255, 255, .10);
+    --border-strong: rgba(255, 255, 255, .16);
+
+    --shadow-1: 0 10px 30px rgba(0, 0, 0, .55);
+    --shadow-2: 0 18px 60px rgba(0, 0, 0, .65);
+
+    /* Text */
+    --text: rgba(255, 255, 255, .92);
+    --muted: rgba(255, 255, 255, .62);
+    --muted-2: rgba(255, 255, 255, .42);
+
+    /* Accents */
+    --primary: #5B7CFF;
+    /* neon blue */
+    --primary-2: #3E5BFF;
+    /* pressed */
+    --gold: #D3AB20;
+    /* tiny highlight rings */
+    --purple: #8A4DFF;
+    /* optional secondary */
+
+    /* Radii + spacing */
+    --r-lg: 20px;
+    --r-md: 14px;
+    --r-sm: 10px;
+
+    /* Motion */
+    --t-fast: 160ms;
+    --t-med: 240ms;
+
+    /* Internal Payload Mappings (Bridging the gap) */
+    --theme-bg: var(--bg-0);
+    --theme-elevation-0: var(--bg-0);
+    --theme-elevation-50: var(--bg-1);
+    --theme-elevation-100: var(--surface);
+    --theme-elevation-200: var(--border);
+    --theme-text: var(--text);
+    --theme-success: var(--primary);
 }
 
-/* Custom styles for a more premium look */
-.nav-group__label {
+/* --- 2) Core Styling Rules --- */
+
+body {
+    background:
+        radial-gradient(900px 500px at 25% 20%, rgba(91, 124, 255, .18), transparent 60%),
+        radial-gradient(700px 420px at 80% 30%, rgba(138, 77, 255, .14), transparent 60%),
+        radial-gradient(600px 520px at 60% 90%, rgba(211, 171, 32, .08), transparent 65%),
+        linear-gradient(180deg, #050314 0%, #07051b 60%, #050314 100%);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+/* Glass Panels Utility */
+.glass,
+.card,
+.dashboard__card-list .card,
+.replicator__field {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-1);
+    border-radius: var(--r-lg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: transform var(--t-fast), border-color var(--t-fast);
+}
+
+.glass:hover,
+.card:hover,
+.dashboard__card-list .card:hover {
+    background: var(--surface-2);
+    border-color: var(--border-strong);
+}
+
+/* Buttons */
+.btn.btn--style-primary {
+    background: linear-gradient(180deg, rgba(91, 124, 255, 1), rgba(62, 91, 255, 1));
+    color: white;
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 14px;
+    padding: 10px 24px;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(91, 124, 255, .22);
+    transition: transform var(--t-fast), box-shadow var(--t-fast);
+}
+
+.btn.btn--style-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 40px rgba(91, 124, 255, .28);
+    background: linear-gradient(180deg, rgba(91, 124, 255, 1), rgba(62, 91, 255, 1));
+}
+
+.btn.btn--style-secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    color: var(--muted);
+}
+
+.btn.btn--style-secondary:hover {
+    border-color: var(--primary);
+    color: var(--text);
+}
+
+/* Inputs & Dropdowns (Pill) */
+input,
+select,
+textarea,
+.react-select__control {
+    background: rgba(255, 255, 255, .03) !important;
+    border: 1px solid rgba(255, 255, 255, .10) !important;
+    border-radius: 999px !important;
+    padding: 10px 14px !important;
+    color: var(--text) !important;
+    transition: all var(--t-fast);
+}
+
+textarea {
+    border-radius: var(--r-md) !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+.react-select__control--is-focused {
+    outline: none;
+    border-color: rgba(91, 124, 255, .55) !important;
+    box-shadow: 0 0 0 4px rgba(91, 124, 255, .18) !important;
+}
+
+/* Sidebar */
+aside.sidebar {
+    background: rgba(5, 3, 20, 0.8) !important;
+    /* Dark glass */
+    backdrop-filter: blur(20px);
+    border-right: 1px solid var(--border);
+}
+
+.nav__link {
+    border-radius: var(--r-sm);
+    color: var(--muted);
+}
+
+.nav__link:hover {
+    background: var(--surface-2);
+    color: var(--text);
+}
+
+.nav__link--active {
+    background: linear-gradient(90deg, rgba(91, 124, 255, .1), transparent);
+    color: var(--primary) !important;
+    border-left: 2px solid var(--primary);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* Header */
+header.app-header {
+    background: rgba(5, 3, 20, 0.6);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+}
+
+/* Table / List View */
+.collection-list .table {
+    background: transparent;
+    /* Remove default bg to let body gradient show or use glass */
+    border: none;
+    box-shadow: none;
+}
+
+.collection-list .table thead tr {
+    background: transparent;
+    border-bottom: 1px solid var(--border);
+}
+
+.collection-list .table th {
+    color: var(--muted);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 700;
     font-size: 0.75rem;
-    color: var(--theme-elevation-600);
+    letter-spacing: 0.05em;
 }
 
-.sidebar .nav {
-    padding-top: 20px;
+/* Row Cards (Custom CSS for Table Rows) */
+.collection-list .table tbody tr {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    /* This might not work on TR directly in all browsers, needing TD borders */
+    border-radius: var(--r-lg);
+    /* margin-bottom is tricky in tables, usually requires border-spacing */
+    box-shadow: var(--shadow-1);
+    backdrop-filter: blur(14px);
+    transition: transform var(--t-fast);
 }
 
-.collection-edit__header-wrap h1 {
-    font-weight: 700;
+/* Hack to make table rows look like separated cards */
+.collection-list .table {
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    /* Vertical gap between rows */
+}
+
+.collection-list .table tbody tr td {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 16px;
+}
+
+.collection-list .table tbody tr td:first-child {
+    border-left: 1px solid var(--border);
+    border-top-left-radius: var(--r-lg);
+    border-bottom-left-radius: var(--r-lg);
+}
+
+.collection-list .table tbody tr td:last-child {
+    border-right: 1px solid var(--border);
+    border-top-right-radius: var(--r-lg);
+    border-bottom-right-radius: var(--r-lg);
+}
+
+.collection-list .table tbody tr:hover {
+    transform: translateY(-2px);
+}
+
+.collection-list .table tbody tr:hover td {
+    background: var(--surface-2);
+    border-color: var(--border-strong);
+}
+
+/* Status Pills (Generic) */
+.pill {
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid transparent;
+}
+
+.pill--published {
+    border-color: rgba(91, 124, 255, .5);
+    background: rgba(91, 124, 255, .1);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(91, 124, 255, .2);
+}
+
+.pill--draft {
+    border-color: var(--border);
+    background: rgba(255, 255, 255, .05);
+    color: var(--muted);
 }

@@ -45,3 +45,4 @@ export default buildConfig({
     }),
     editor: lexicalEditor({}),
 })
+// Trigger rebuild
